@@ -1,0 +1,31 @@
+
+/* ===== EK: AYAR ALANLARI & UYARILAR ===== */
+.hint-text, .hint { font-size: 0.8rem; color: #888; margin-bottom: 8px; }
+.field { display: block; font-size: 0.85rem; color: #aaaadd; margin-bottom: 6px; }
+.field input { margin-top: 4px; }
+.error-text { color: #ff6666; }
+.preview-item.warn { border-color: #ffd700; }
+.tag-list .tag { white-space: normal; }
+pre.raw {
+  background: #0a0a14; color: #bbb; padding: 10px; border-radius: 8px;
+  white-space: pre-wrap; word-break: break-word; font-size: 0.78rem; max-height: 240px; overflow: auto;
+}
+
+/* ===== OLAY GÜNLÜĞÜ ===== */
+.log-view {
+  max-height: 420px; overflow: auto; background: #0a0a14;
+  border: 1px solid #2a2a4e; border-radius: 8px; padding: 8px; font-size: 0.8rem;
+}
+.log-row { padding: 6px 4px; border-bottom: 1px solid #1a1a2e; display: grid; grid-template-columns: 70px 60px 80px 1fr; gap: 6px; align-items: start; }
+.log-row details { grid-column: 1 / -1; }
+.log-row details pre { background: #05050a; padding: 6px; border-radius: 6px; white-space: pre-wrap; word-break: break-word; font-size: 0.72rem; }
+.log-time { color: #666; }
+.log-level { font-weight: bold; }
+.log-cat { color: #8888ff; }
+.log-msg { word-break: break-word; }
+.log-error .log-level { color: #ff4444; }
+.log-error .log-msg { color: #ff8888; }
+.log-warn .log-level { color: #ffd700; }
+.log-info .log-level { color: #4488ff; }
+.log-debug .log-level { color: #888; }
+select { width: auto; margin-bottom: 0; }

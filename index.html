@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚔️ CoC Savaş Analiz Aracı</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>⚔️ CoC Savaş Analiz Aracı</h1>
+      <p>Ekran görüntüsünü yükle → Yapay Zeka analiz etsin → Notlar ve olay günlüğü otomatik oluşsun</p>
+    </header>
+
+    <!-- API Key -->
+    <div class="card" id="api-section">
+      <h2>🔑 Claude API Ayarları</h2>
+      <p class="hint">API key yoksa: console.anthropic.com → API Keys (ücretli bir hesap/kredi gerekir).</p>
+      <input type="password" id="apiKey" placeholder="Claude API Key (sk-ant-...)" />
+      <button onclick="saveApiKey()">💾 Kaydet</button>
+      <span id="apiStatus"></span>
+    </div>
+
+    <!-- Ayarlar -->
+    <div class="card" id="settings-section">
+      <h2>⚙️ Ayarlar</h2>
+      <label class="field">Model
+        <input type="text" id="modelName" placeholder="claude-sonnet-4-5" />
+      </label>
+      <label class="field">GitHub repo (kullanici/repo) — opsiyonel
+        <input type="text" id="ghRepo" placeholder="kullanici/repo" />
+      </label>
+      <label class="field">GitHub token (fine-grained, Contents: read/write) — opsiyonel
+        <input type="password" id="ghToken" placeholder="github_pat_..." />
+      </label>
+      <button onclick="saveSettings()">💾 Ayarları Kaydet</button>
+      <span id="settingsStatus"></span>
+    </div>
+
+    <!-- Upload Area -->
+    <div class="card" id="upload-section">
+      <h2>📸 Ekran Görüntüsü Yükle</h2>
+      <div class="drop-zone" id="dropZone">
+        <p>📂 Sürükle & Bırak veya tıkla</p>
+        <p class="hint">PNG, JPG, WebP, HEIC vb. — büyük görüntüler otomatik küçültülür</p>
+        <input type="file" id="fileInput" accept="image/*" multiple hidden>
+      </div>
+
+      <!-- Preview -->
+      <div id="previewGrid"></div>
+
+      <div class="options">
+        <label>
+          Analiz Modu:
+          <select id="analysisMode">
+            <option value="full">🔍 Tam Analiz (Tüm Detaylar)</option>
+            <option value="strategy">⚔️ Strateji Odaklı</option>
+            <option value="color">🎨 Renk & Değişim Analizi</option>
+            <option value="compare">🔄 Karşılaştırmalı (önceki + mevcut)</option>
+          </select>
+        </label>
+      </div>
+
+      <button class="btn-primary" onclick="analyzeAll()">🚀 Analiz Başlat</button>
+    </div>
+
+    <!-- Progress -->
+    <div class="card" id="progressSection" style="display:none">
+      <h2>⏳ Analiz Ediliyor...</h2>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <p id="progressText">Hazırlanıyor...</p>
+    </div>
+
+    <!-- Results -->
+    <div class="card" id="resultsSection" style="display:none">
+      <h2>📋 Savaş Notları</h2>
+      <div class="toolbar">
+        <button onclick="exportMarkdown()">📄 Markdown İndir</button>
+        <button onclick="exportJSON()">📦 JSON İndir</button>
+        <button onclick="copyAll()">📋 Kopyala</button>
+        <button onclick="saveToGitHub()">🐙 GitHub'a Kaydet</button>
+      </div>
+      <div id="notesContainer"></div>
+    </div>
+
+    <!-- Olay Günlüğü -->
+    <div class="card" id="logSection">
+      <h2>🧾 Olay Günlüğü (hatalar & ekranda olanlar)</h2>
+      <div class="toolbar">
+        <select id="logLevel" onchange="filterLogs()">
+          <option value="">Tüm seviyeler</option>
+          <option value="error">🔴 Hata</option>
+          <option value="warn">🟡 Uyarı</option>
+          <option value="info">🔵 Bilgi</option>
+        </select>
+        <select id="logCategory" onchange="filterLogs()">
+          <option value="">Tüm kategoriler</option>
+          <option value="upload">upload</option>
+          <option value="image">image</option>
+          <option value="api">api</option>
+          <option value="parse">parse</option>
+          <option value="screen">screen</option>
+          <option value="system">system</option>
+          <option value="github">github</option>
+        </select>
+        <button onclick="refreshLogView()">🔄 Yenile</button>
+        <button onclick="exportLogMarkdown()">📄 Günlük (.md)</button>
+        <button onclick="exportLogJSON()">📦 Günlük (.json)</button>
+        <button onclick="clearLogs()">🗑️ Temizle</button>
+      </div>
+      <div id="logView" class="log-view"></div>
+    </div>
+
+  </div>
+
+  <script src="storage.js"></script>
+  <script src="analyzer.js"></script>
+  <script src="notes-renderer.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

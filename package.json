@@ -1,0 +1,9 @@
+{
+  "name": "coc-war-analyzer",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Clash of Clans savaş ekran görüntüsü analiz aracı (Claude Vision) + olay günlüğü",
+  "scripts": {
+    "test": "node --test tests/analyzer.test.js"
+  }
+}
