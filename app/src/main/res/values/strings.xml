@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Clash Auto Bot</string>
+    <string name="accessibility_service_label">Clash Auto Bot Erişilebilirlik Servisi</string>
+    <string name="accessibility_service_description">Clash of Clans ekranını okuyup otomatik oynatmak için ekran görüntüsü ve dokunuş yetkisi sağlar.</string>
+    <string name="btn_start">BAŞLAT</string>
+    <string name="btn_stop">DURDUR</string>
+    <string name="btn_open_accessibility">Erişilebilirlik Ayarlarını Aç</string>
+    <string name="btn_open_overlay">Overlay (Üstte Gösterme) İzni Ver</string>
+    <string name="status_ready">Hazır</string>
+    <string name="status_service_disabled">Erişilebilirlik servisi kapalı</string>
+    <string name="status_service_enabled">Erişilebilirlik servisi aktif</string>
+</resources>
